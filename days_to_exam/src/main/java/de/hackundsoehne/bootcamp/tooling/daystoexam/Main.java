@@ -6,6 +6,7 @@ import static spark.Spark.*;
  */
 public class Main {
     public static void main(String[] args) {
+        addHeader();
         get("/hello", (req, res) -> "Hello World");
         get("/exams/:name", (req, res) -> {
             String exam = req.params(":name");
@@ -15,6 +16,27 @@ public class Main {
             } else {
                 return "You have " + daysLeft + " days left until you have to write "+exam+".";
             }
+        });
+    }
+
+    /**
+     * these headers are necessary to allow CORS
+     */
+    private static void addHeader() {
+        before((request, response) -> {
+            response.header("access-control-allow-origin", "*");
+            response.header("access-control-allow-methods", "GET,PUT,POST,PATCH,DELETE,OPTIONS");
+            response.header("access-control-allow-credentials", "true");
+            response.header("access-control-allow-headers", "Authorization,Content-Type");
+            response.header("access-control-expose-headers", "Link,Location");
+            response.header("access-control-max-age", "600"); // see http://stackoverflow.com/a/23549398/2373138
+            // Note: this may or may not be necessary in your particular application
+            response.type("application/json");
+        });
+        options("/*", (request, response) -> {
+            response.status(204);
+            response.type("text/plain");
+            return "";
         });
     }
 
