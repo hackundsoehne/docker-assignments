@@ -10,7 +10,7 @@ First we need to install [docker community edition](https://www.docker.com/commu
 
 First run `docker pull hello-world`, this will download the latest hello-world image.
 To actually run the image type `docker run hello-world`, this should verify that everything is set up correctly.
-(you may want to delete the container AND the image! [HINT](##Hints-2.)).
+(you may want to delete the container AND the image! [Hints](#Hints-2.)).
 
 ## 2.1 Your first assignment
 
@@ -31,7 +31,7 @@ You need to ([Hints](##Hints-2.2)):
 # 3. dockerfiles
 
 ## 3.1 creating your first dockerfile
-Your first task is to recreate the hello-world image from above. In the folder `hello_world` is a script that just prints hello word. Your task is to create an image that just runs the script `hello.sh`. [HINTS](##Hints-3.1)
+Your first task is to recreate the hello-world image from above. In the folder `hello_world` is a script that just prints hello word. Your task is to create an image that just runs the script `hello.sh`. [Hints](##Hints-3.1)
 
 ## 3.2 Dockerize a Java-Server
 Open the Java-Project in `/days_to_exam`. Your first task is to implement the method `calculateDaysToExam(String exam)`. Just choose one of your exams and calculate how many days are left. You can test your implementation by running main (klick on the green arrow on the left) and vistiting `http://localhost:4567/hello` for basic functionality and `http://localhost:4567/exams/<exam>` for the implementation of the method ([HINTS](##Hints-3.2)). After implementing the method your task is dockerize the server. You need an enviroment where java is installed, so it is recommended to use `openjdk:8` image as a parent. To build the java-project run `gradle fatJar`, the jar is then located in `/build/libs/` (use the one that contains `all`, if there are multiple jars). You need to Copy the jar into the image, expose port `4567` and set the entry-command to `java -jar <location>`. Then build the docker image using `docker build <locationOfTheDockerFile>`. To test the image, start the docker container detached and with open ports. See 2.2 for running webservers.
