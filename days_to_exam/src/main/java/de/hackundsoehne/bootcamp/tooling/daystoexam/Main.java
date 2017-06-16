@@ -13,7 +13,7 @@ public class Main {
             if (daysLeft == -1) {
                 return "exam \"" + exam + "\" not found";
             } else {
-                return "there are " + daysLeft + " days left until you have to write "+exam+".";
+                return "You have " + daysLeft + " days left until you have to write "+exam+".";
             }
         });
     }
