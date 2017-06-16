@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/yegor256/tacit/gh-pages/tacit-0.8.1.min.css"/>
+  </head>
+  <body>
+      <h1>Exam-Countdown</h1><br>
+      <form>
+          Your exam:
+          <input id="input" type="text">
+      </form>
+      <button onclick="submit();">submit</button>
+      <div id="output"></div>
+  </body>
+  <script type="text/javascript">
+   function submit () {
+       var input = document.getElementById('input').value
+       fetch('http://${Server_URL}/exams/'+input, {
+            method: 'get'
+        }).then(function(response) {
+            return response.text();
+        }).then(function(text) {
+            document.getElementById("output").innerHTML = text;
+        }).catch(function(err) {
+            console.log(err)
+        });
+   }
+</script>
+</html>
